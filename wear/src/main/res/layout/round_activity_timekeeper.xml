@@ -15,6 +15,6 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/close_button_diameter"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="false" />
 
 </RelativeLayout>
