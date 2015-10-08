@@ -3,6 +3,7 @@ package com.alexduros.timekeeper;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
+import android.view.View;
 import android.widget.Chronometer;
 
 public class TimekeeperActivity extends Activity {
@@ -18,8 +19,13 @@ public class TimekeeperActivity extends Activity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mChronometer = (Chronometer) findViewById(R.id.chronometer);
-                mChronometer.start();
+                mChronometer.setText("24");
             }
         });
+    }
+
+    public void startTimekeeper(View view) {
+        mChronometer = (Chronometer) findViewById(R.id.chronometer);
+        mChronometer.start();
     }
 }
