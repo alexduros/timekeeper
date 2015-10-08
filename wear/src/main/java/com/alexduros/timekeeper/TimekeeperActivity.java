@@ -22,10 +22,12 @@ public class TimekeeperActivity extends Activity {
                 mChronometer.setText("24");
             }
         });
-    }
-
-    public void startTimekeeper(View view) {
-        mChronometer = (Chronometer) findViewById(R.id.chronometer);
-        mChronometer.start();
+        stub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    mChronometer = (Chronometer) findViewById(R.id.chronometer);
+                    mChronometer.start();
+            }
+        });
     }
 }

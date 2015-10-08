@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".TimekeeperActivity"
-    android:clickable="true" android:onClick="startTimeKeeper"
     tools:deviceIds="wear_round"
     android:background="@color/common_signin_btn_light_text_focused">
 
