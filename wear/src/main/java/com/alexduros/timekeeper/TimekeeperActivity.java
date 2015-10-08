@@ -1,11 +1,16 @@
 package com.alexduros.timekeeper;
 
 import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorManager;
 import android.util.Log;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
-import android.view.View;
 import android.widget.TextView;
+
+import java.util.Arrays;
 
 public class TimekeeperActivity extends Activity {
 
@@ -13,6 +18,10 @@ public class TimekeeperActivity extends Activity {
 
     TextView mTextView;
     CountDownClickListener mClickListener;
+
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
+
     Activity instance;
 
     @Override
@@ -20,7 +29,12 @@ public class TimekeeperActivity extends Activity {
         Log.d(TAG, "creating activity");
         super.onCreate(savedInstanceState);
         instance = this;
+
         setContentView(R.layout.activity_timekeeper);
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
@@ -35,6 +49,28 @@ public class TimekeeperActivity extends Activity {
                 mTextView.setOnClickListener(mClickListener);
             }
         });
+    }
+
+    public void onSensorChanged(SensorEvent event){
+        // In this example, alpha is calculated as t / (t + dT),
+        // where t is the low-pass filter's time-constant and
+        // dT is the event delivery rate.
+
+        final float alpha = (float) 0.8;
+        float[] gravity = new float[3];
+        float[] linear_acceleration = new float[3];
+
+        // Isolate the force of gravity with the low-pass filter.
+        gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+        gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+        gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+        // Remove the gravity contribution with the high-pass filter.
+        linear_acceleration[0] = event.values[0] - gravity[0];
+        linear_acceleration[1] = event.values[1] - gravity[1];
+        linear_acceleration[2] = event.values[2] - gravity[2];
+
+        Log.d(TAG, String.format("gravity: %s, linear acceleration: %s", Arrays.toString(gravity), Arrays.toString(linear_acceleration)));
     }
 
     @Override
