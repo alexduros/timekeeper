@@ -27,7 +27,7 @@ public class TimekeeperActivity extends Activity  {
     private final SensorEventListener mSensorListener = new SensorEventListener() {
 
         public void onSensorChanged(SensorEvent event){
-            Log.d(TAG, "receive onSensorChanged");
+            Log.v(TAG, "receive onSensorChanged");
 
             final float alpha = (float) 0.8;
             float[] gravity = new float[3];
@@ -47,8 +47,12 @@ public class TimekeeperActivity extends Activity  {
             linear_acceleration[1] = event.values[1] - gravity[1];
             linear_acceleration[2] = event.values[2] - gravity[2];
 
-            Log.d(TAG, String.format("gravity: %s", Arrays.toString(gravity)));
-            Log.d(TAG, String.format("linear_acceleration: %s", Arrays.toString(linear_acceleration)));
+            Log.v(TAG, String.format("gravity: %s", Arrays.toString(gravity)));
+            Log.v(TAG, String.format("linear_acceleration: %s", Arrays.toString(linear_acceleration)));
+
+            if (gravity[0] < 0 && gravity[1] < 0 && gravity[3] < 0) {
+                mClickListener.pauseCountDown();
+            }
         }
 
         @Override
