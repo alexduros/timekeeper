@@ -12,7 +12,7 @@ class CountDownClickListener implements View.OnClickListener {
     private static final String TAG = "CountDownClickListener";
 
     public static final int POSSESION_INTERVALL = 24000;
-    public static final boolean RUN_COUNTDOWN_AT_START = false;
+    public static final boolean RUN_COUNTDOWN_AT_START = true;
 
     public static final int SHOT_CLOCK_VIOLATION_DURATION = 1000;
 
@@ -47,8 +47,7 @@ class CountDownClickListener implements View.OnClickListener {
                 }
             };
             Log.d(TAG, "starting new countdown");
-            mCountDown.resume();
-
+            mCountDown.create();
         }
     }
 
