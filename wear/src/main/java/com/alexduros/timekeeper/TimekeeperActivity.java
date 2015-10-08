@@ -47,7 +47,8 @@ public class TimekeeperActivity extends Activity  {
             linear_acceleration[1] = event.values[1] - gravity[1];
             linear_acceleration[2] = event.values[2] - gravity[2];
 
-            Log.d(TAG, String.format("gravity: %s, linear acceleration: %s", Arrays.toString(gravity), Arrays.toString(linear_acceleration)));
+            Log.d(TAG, String.format("gravity: %s", Arrays.toString(gravity)));
+            Log.d(TAG, String.format("linear_acceleration: %s", Arrays.toString(linear_acceleration)));
         }
 
         @Override
