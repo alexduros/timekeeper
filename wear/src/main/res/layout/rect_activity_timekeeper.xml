@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".TimekeeperActivity" tools:deviceIds="wear_square">
@@ -14,8 +14,7 @@
         android:id="@+id/textView"
         android:textSize="@dimen/close_button_diameter"
         android:textIsSelectable="true"
-        android:layout_gravity="center"
         android:elegantTextHeight="false" />
 
 
-</LinearLayout>
+</RelativeLayout>
