@@ -1,33 +1,35 @@
 package com.alexduros.timekeeper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
-import android.widget.Chronometer;
+import android.widget.TextView;
 
 public class TimekeeperActivity extends Activity {
 
-    Chronometer mChronometer;
+    TextView mTextView;
+    View.OnClickListener mClickListener;
+    Activity instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         setContentView(R.layout.activity_timekeeper);
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                mChronometer = (Chronometer) findViewById(R.id.chronometer);
-                mChronometer.setText("24");
-            }
-        });
-        stub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    mChronometer = (Chronometer) findViewById(R.id.chronometer);
-                    mChronometer.start();
+                mTextView = (TextView) findViewById(R.id.textView);
+                mTextView.setText("24");
+                mClickListener = new CountDownClickListener(mTextView, instance);
+                mTextView.setOnClickListener(mClickListener);
             }
         });
     }
 }
+
+;
+

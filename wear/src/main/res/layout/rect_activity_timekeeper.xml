@@ -4,11 +4,18 @@
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".TimekeeperActivity" tools:deviceIds="wear_square">
 
-    <Chronometer
-        android:id="@+id/chronometer"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/close_button_diameter"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="24"
+        android:id="@+id/textView"
+        android:textSize="@dimen/close_button_diameter"
+        android:textIsSelectable="true"
+        android:layout_gravity="center"
+        android:elegantTextHeight="false" />
+
+
 </LinearLayout>
