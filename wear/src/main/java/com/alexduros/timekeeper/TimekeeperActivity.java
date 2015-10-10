@@ -55,7 +55,7 @@ public class TimekeeperActivity extends Activity  {
             if (gravity[0] < 0 && gravity[1] < 0 && gravity[2] < 0) {
                 // This is a numb way to test
                 // a violation or foul gesture
-                mClickListener.pauseCountDown();
+                // mClickListener.pauseCountDown();
             }
         }
 
