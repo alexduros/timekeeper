@@ -1,7 +1,6 @@
 package com.alexduros.timekeeper;
 
 import android.content.Context;
-import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
